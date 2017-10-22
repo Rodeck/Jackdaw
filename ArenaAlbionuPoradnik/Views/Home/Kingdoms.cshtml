@@ -1,0 +1,26 @@
+﻿@model ArenaAlbionuPoradnik.Models.NKingdom
+
+@{
+    ViewBag.Title = "Kingdoms";
+}
+
+<h2>Lista królestw:</h2>
+
+<table class="table table-striped">
+    {
+        <tr>
+            <td>
+                <table class="table table-bordered">
+                    <tr><td class="text-center">@Model.Name</td></tr>
+                    @foreach (var location in Model.NLocation)
+                    {
+                        <tr> <td>@Html.ActionLink(location.Name, "Location", "Home", new { Id = location.Id }, null)</td></tr>
+                    }
+                </table>
+
+            </td>
+        </tr>
+    }
+    
+</table>
+

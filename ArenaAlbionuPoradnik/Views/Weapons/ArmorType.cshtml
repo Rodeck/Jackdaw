@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ArenaAlbionuPoradnik.Models.Armor>
+
+@{
+    ViewBag.Title = "ArmorType";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row row-no-margin header">
+    <header class="">
+        <h3>Spis</h3>
+    </header>
+</div>
+<div class="row row-no-margin">
+    <div class="location-description">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus, libero sed placerat aliquet, nunc sem commodo orci, vitae pulvinar enim metus sit amet est. Nulla tincidunt lorem neque, ac imperdiet odio fermentum sed. Suspendisse porttitor arcu nec metus pharetra elementum. In nisl nisl, faucibus non felis vitae, suscipit fringilla turpis. Sed imperdiet laoreet orci, vel molestie dui mollis eu. Curabitur vitae justo consectetur, cursus diam quis, laoreet dolor. Donec elementum est vel eros tristique luctus. Sed tortor magna, gravida vel faucibus vitae, fringilla at felis.
+
+            Etiam dapibus diam nec tempus ornare. Suspendisse potenti. Fusce eu massa ut augue posuere viverra. Vivamus ultricies tristique lectus, ut molestie dolor elementum at. Mauris eget varius mauris, et condimentum nisi. Nunc accumsan diam.
+        </p>
+    </div>
+</div>
+<div class="row row-no-margin">
+    <div class="location-description">
+        <table class="table table-hover">
+            <tr>
+                <th>
+                    Nazwa
+                </th>
+                <th>
+                    Wygląd
+                </th>
+                <th>
+                    Obrona
+                </th>
+                <th>
+                    Siła
+                </th>
+                <th>
+                    Wytrzymałość
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @{
+                            var imgSrc = String.Format("data:image/gif;base64,{0}", item.Image);
+                        }
+                        <img src="@imgSrc" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Defence)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ConditionUse)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Durability)
+                    </td>
+                </tr>
+                            }
+
+        </table>
+    </div>
+</div>

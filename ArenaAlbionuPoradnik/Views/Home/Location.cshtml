@@ -1,0 +1,16 @@
+﻿@model ArenaAlbionuPoradnik.Models.Location
+
+<h2>@Model.Name</h2>
+<table>
+    <tr>
+        <td>
+
+            @{
+                var imgSrc = String.Format("data:image/gif;base64,{0}", Model.Map);
+            }
+
+            <img src="@imgSrc" />
+
+        </td>
+    </tr>
+</table>

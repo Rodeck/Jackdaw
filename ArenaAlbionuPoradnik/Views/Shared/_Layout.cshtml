@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&lang=en" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <title>Poradnik</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row content">
+            <!-- Menu section-->
+            <div class="col-sm-3 sidenav">
+                <div class="text-center logo-text logo-div">
+                    <h2>Arena Albionu - Poradnik</h2>
+                </div>
+                <div class="max-width">
+                    <ul class="list-group">
+                        <li class="list-group-item no-border" data-toggle="collapse" data-target="#kingdoms">
+                            <p>
+                                <i class="material-icons">map</i>
+                                Królestwa
+                            </p>
+                            <ul id ="kingdoms" class="collapse list-group">
+                                <li class="list-group-item no-border">@Html.ActionLink("Albion", "Index", "Kingdom", new { Id = 1 }, null)</li>
+                                <li class="list-group-item no-border">@Html.ActionLink("Zigura", "Index", "Kingdom")</li>
+                                <li class="list-group-item no-border">@Html.ActionLink("Orgrod", "Index", "Kingdom")</li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item no-border" data-toggle="collapse" data-target="#enemies">
+                            <p>
+                            <i class="material-icons">map</i>
+                            Przeciwnicy
+                            </p>
+                            <ul id="enemies" class="collapse">
+                                <li>@Html.ActionLink("Zwierzęta", "Index", "Kingdom")</li>
+                                <li>@Html.ActionLink("Bandyci", "Index", "Kingdom")</li>
+                                <li>@Html.ActionLink("Monstra", "Index", "Kingdom")</li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item no-border" data-toggle="collapse" data-target="#equipment">
+                            <p>
+                                <i class="material-icons">map</i>
+                                Uzbrojenie
+                            </p>
+                                <ul id="equipment" class="collapse">
+                                    <li>@Html.ActionLink("Broń jednoręczna", "WeaponType", "Weapons", new { type = "OneHanded" }, null)</li>
+                                    <li>@Html.ActionLink("Broń dwuręczna", "WeaponType", "Weapons", new { type = "DoubleHanded" }, null)</li>
+                                    <li>@Html.ActionLink("Napierśniki", "ArmorType", "Weapons", new { type = "Chest" }, null)</li>
+                                </ul>
+                        </li>
+                        <li class="list-group-item no-border" data-toggle="collapse" data-target="#tutorials">
+                            <p>
+                                <i class="material-icons">map</i>
+                            Poradniki
+                            </p>
+                            <ul id="tutorials" class="collapse">
+                                <li>@Html.ActionLink("Jak rozpocząć rozgrywkę", "Index", "Kingdom")</li>
+                                <li>@Html.ActionLink("Droga kupca", "Index", "Kingdom")</li>
+                                <li>@Html.ActionLink("Droga wojownika wiary", "Index", "Kingdom")</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="form-div">
+                    <form>
+                        <div class="group">
+                            <input type="text"><span class="highlight"></span><span class="bar"></span>
+                            <label>Email</label>
+                        </div>
+                        <div class="group">
+                            <input type="email"><span class="highlight"></span><span class="bar"></span>
+                            <label>Hasło</label>
+                        </div>
+                        <button type="button" class="button buttonBlue">
+                            Zaloguj
+                            <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+                        </button>
+                    </form>
+                    <ul class="nav nav-pills nav-stacked span2 navbar-inverse">
+                        <li>@Html.ActionLink("Zarejestruj", "Index", "Kingdom")</li>
+                        <li>@Html.ActionLink("Przypomnij hasło", "Index", "Kingdom")</li>
+                    </ul>
+            </div>
+            </div>
+            <!-- Content section-->
+            <div class="col-sm-9 no-padding main-content">
+                <div class="container body-content">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+            @RenderSection("scripts", required: false)
+</body>
+</html>

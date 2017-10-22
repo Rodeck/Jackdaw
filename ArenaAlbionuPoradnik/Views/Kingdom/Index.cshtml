@@ -1,0 +1,54 @@
+﻿@model ArenaAlbionuPoradnik.Models.NKingdom
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row row-no-margin header">
+    <header class="">
+        <h3>@Model.Name</h3>
+    </header>
+</div>
+<div class="row row-no-margin">
+    <div class="location-description">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus, libero sed placerat aliquet, nunc sem commodo orci, vitae pulvinar enim metus sit amet est. Nulla tincidunt lorem neque, ac imperdiet odio fermentum sed. Suspendisse porttitor arcu nec metus pharetra elementum. In nisl nisl, faucibus non felis vitae, suscipit fringilla turpis. Sed imperdiet laoreet orci, vel molestie dui mollis eu. Curabitur vitae justo consectetur, cursus diam quis, laoreet dolor. Donec elementum est vel eros tristique luctus. Sed tortor magna, gravida vel faucibus vitae, fringilla at felis.
+
+            Etiam dapibus diam nec tempus ornare. Suspendisse potenti. Fusce eu massa ut augue posuere viverra. Vivamus ultricies tristique lectus, ut molestie dolor elementum at. Mauris eget varius mauris, et condimentum nisi. Nunc accumsan diam.
+        </p>
+    </div>
+</div>
+<div class="row locations-row">
+    <div class="location-list">
+        <ul class="list-group">
+            @foreach (ArenaAlbionuPoradnik.Models.NLocation location in Model.NLocation)
+            {
+            <li class="list-group-item location-panel" data-toggle="collapse" data-target="#loc_@location.Id">
+                <p>
+                    @location.Name
+                </p>
+                <ul id="loc_@location.Id" class="collapse list-group">
+                    <li class="list-group-item">
+                        <div>
+                            <p>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        @{
+                                            var imgSrc = String.Format("data:image/gif;base64,{0}", location.Map);
+                                        }
+
+                                        <img src="@imgSrc" />
+                                    </div>
+                                    <div class="col-md-7">
+
+                                    </div>
+                                </div>
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            }
+        </ul>
+</div>
+</div>

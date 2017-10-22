@@ -1,0 +1,67 @@
+﻿@model ArenaAlbionuPoradnik.Models.Weapon
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Weapon</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Attack)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Attack)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConditionUse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConditionUse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Durability)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Durability)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
