@@ -28,9 +28,9 @@
                                 Królestwa
                             </p>
                             <ul id ="kingdoms" class="collapse list-group">
-                                <li class="list-group-item no-border">@Html.ActionLink("Albion", "Index", "Kingdom", new { Id = 1 }, null)</li>
-                                <li class="list-group-item no-border">@Html.ActionLink("Zigura", "Index", "Kingdom")</li>
-                                <li class="list-group-item no-border">@Html.ActionLink("Orgrod", "Index", "Kingdom")</li>
+                                <li class="list-group-item list-item no-border">@Html.ActionLink("Albion", "Index", "Kingdom", new { Id = 1 }, null)</li>
+                                <li class="list-group-item list-item no-border">@Html.ActionLink("Zigura", "Index", "Kingdom")</li>
+                                <li class="list-group-item list-item no-border">@Html.ActionLink("Orgrod", "Index", "Kingdom")</li>
                             </ul>
                         </li>
                         <li class="list-group-item no-border" data-toggle="collapse" data-target="#enemies">
@@ -38,10 +38,10 @@
                             <i class="material-icons">map</i>
                             Przeciwnicy
                             </p>
-                            <ul id="enemies" class="collapse">
-                                <li>@Html.ActionLink("Zwierzęta", "Index", "Kingdom")</li>
-                                <li>@Html.ActionLink("Bandyci", "Index", "Kingdom")</li>
-                                <li>@Html.ActionLink("Monstra", "Index", "Kingdom")</li>
+                            <ul id="enemies" class="collapse list-group">
+                                <li class="list-group-item list-item no-border">@Html.ActionLink("Zwierzęta", "Index", "Kingdom", new { Id = 1 }, null)</li>
+                                <li class="list-group-item list-item no-border">@Html.ActionLink("Bandyci", "Index", "Kingdom")</li>
+                                <li class="list-group-item list-item no-border">@Html.ActionLink("Monstra", "Index", "Kingdom")</li>
                             </ul>
                         </li>
                         <li class="list-group-item no-border" data-toggle="collapse" data-target="#equipment">
@@ -49,11 +49,11 @@
                                 <i class="material-icons">map</i>
                                 Uzbrojenie
                             </p>
-                                <ul id="equipment" class="collapse">
-                                    <li>@Html.ActionLink("Broń jednoręczna", "WeaponType", "Weapons", new { type = "OneHanded" }, null)</li>
-                                    <li>@Html.ActionLink("Broń dwuręczna", "WeaponType", "Weapons", new { type = "DoubleHanded" }, null)</li>
-                                    <li>@Html.ActionLink("Napierśniki", "ArmorType", "Weapons", new { type = "Chest" }, null)</li>
-                                </ul>
+                            <ul id="equipment" class="collapse list-group">
+                                <li class="list-group-item list-item no-border">@Html.ActionLink("Broń jednoręczna", "WeaponType", "Weapons", new { type = "OneHanded" }, null)</li>
+                                <li class="list-group-item list-item no-border">@Html.ActionLink("Broń dwuręczna", "WeaponType", "Weapons", new { type = "DoubleHanded" }, null)</li>
+                                <li class="list-group-item list-item no-border">@Html.ActionLink("Napierśniki", "ArmorType", "Weapons", new { type = "Chest" }, null)</li>
+                            </ul>
                         </li>
                         <li class="list-group-item no-border" data-toggle="collapse" data-target="#tutorials">
                             <p>
