@@ -13,5 +13,7 @@ namespace ArenaAlbionuPoradnik.Models
         public int NKingdomId { get; set; }
         public int CreationTurn { get; set; }
         public virtual NKingdom Kingdom { get; set; }
+        public virtual ICollection<Place> Place { get; set; }
+        public virtual ICollection<Enemy> Enemies { get; set; }
     }
 }

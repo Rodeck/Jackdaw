@@ -18,37 +18,42 @@
         </p>
     </div>
 </div>
-<div class="row locations-row">
+<div class="row row-no-margin">
     <div class="location-list">
-        <ul class="list-group">
+        <div class="list-group">
             @foreach (ArenaAlbionuPoradnik.Models.NLocation location in Model.NLocation)
             {
-            <li class="list-group-item location-panel" data-toggle="collapse" data-target="#loc_@location.Id">
+            <div class="list-group-item location-panel list-item collapsable-area-gray" data-toggle="collapse" data-target="#loc_@location.Id">
                 <p>
                     @location.Name
-                </p>
-                <ul id="loc_@location.Id" class="collapse list-group">
-                    <li class="list-group-item">
-                        <div>
-                            <p>
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        @{
-                                            var imgSrc = String.Format("data:image/gif;base64,{0}", location.Map);
-                                        }
+                </p>               
+            </div>
+            <div id="loc_@location.Id" class="collapse location-panel collapsable-content">
+                <div>
+                    <div class="">
+                        @{
+                            var imgSrc = String.Format("data:image/gif;base64,{0}", location.Map);
+                            var mapName = location.Name.Replace(" ", "") + "Map";
+                        }
 
-                                        <img src="@imgSrc" />
-                                    </div>
-                                    <div class="col-md-7">
+                        <img src="@imgSrc" usemap="#@mapName"/>
+                        <map name="@mapName">
+                            @foreach (ArenaAlbionuPoradnik.Models.Place place in location.Place)
+                            {
+                                string style = "position: relative; left: " + place.TopX + "px; top: " + place.TopY + "px";
+                                string coords = place.TopX + "," + place.TopY + "," + place.BottomX + "," + place.BottomY;
+                                //<button style="@style">@place.PlaceName</button>
+                                <area shape="rect" coords="@coords" alt="@place.PlaceName">
+                            }
+                        </map>
+                        
+                    </div>
+                    <div class="">
 
-                                    </div>
-                                </div>
-                            </p>
-                        </div>
-                    </li>
-                </ul>
-            </li>
+                    </div>
+                </div>
+            </div>
             }
-        </ul>
+        </div>
 </div>
 </div>

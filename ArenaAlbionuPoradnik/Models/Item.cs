@@ -11,6 +11,7 @@ namespace ArenaAlbionuPoradnik.Models
         public ItemType Type { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
+        public ICollection<Enemy> Enemies { get; set; }
     }
 }
 

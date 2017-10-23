@@ -26,7 +26,6 @@ body {
 {
     margin-left: 80px;
     margin-right: 80px;
-    margin-top: 40px;
 }
 
 .main-container
@@ -39,10 +38,20 @@ body {
   background-color: #263238;
 }
 
+.collapsable-area-gray:hover {
+  background-color: #5F5F5F;
+}
+
+.collapsable-content
+{
+    padding: 10px, 10px, 10px, 10px;
+}
+
 .row-no-margin
 {
     margin-left: 0px;
     margin-right: 0px;
+    margin-top: 40px;
 
 }
 

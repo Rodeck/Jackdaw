@@ -1,0 +1,27 @@
+﻿@model ArenaAlbionuPoradnik.Models.Story
+
+@{
+    ViewBag.Title = "Story";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row row-no-margin header">
+    <div class="">
+        <h3>@Model.Title</h3>
+    </div>
+</div>
+<div class="row row-no-margin">
+    <div class="location-description">
+        <p>
+            @Model.Text
+        </p>
+    </div>
+</div>
+<div class="row row-no-margin">
+    <div class="location-description">
+        <p>
+            @Html.ActionLink("Losowa historia", "Story", "Stories", new { Id = -1 }, null)
+            @Html.ActionLink("Powrót", "Index", "Stories")
+        </p>
+    </div>
+</div>
+

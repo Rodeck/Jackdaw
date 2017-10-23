@@ -39,9 +39,9 @@
                             Przeciwnicy
                             </p>
                             <ul id="enemies" class="collapse list-group">
-                                <li class="list-group-item list-item no-border">@Html.ActionLink("Zwierzęta", "Index", "Kingdom", new { Id = 1 }, null)</li>
-                                <li class="list-group-item list-item no-border">@Html.ActionLink("Bandyci", "Index", "Kingdom")</li>
-                                <li class="list-group-item list-item no-border">@Html.ActionLink("Monstra", "Index", "Kingdom")</li>
+                                <li class="list-group-item list-item no-border">@Html.ActionLink("Zwierzęta", "EnemyOfType", "Enemies", new { type = "Animal" }, null)</li>
+                                <li class="list-group-item list-item no-border">@Html.ActionLink("Bandyci", "EnemyOfType", "Enemies", new { type = "Criminal" }, null)</li>
+                                <li class="list-group-item list-item no-border">@Html.ActionLink("Monstra", "EnemyOfType", "Enemies", new { type = "Monstrum" }, null)</li>
                             </ul>
                         </li>
                         <li class="list-group-item no-border" data-toggle="collapse" data-target="#equipment">
@@ -65,6 +65,12 @@
                                 <li>@Html.ActionLink("Droga kupca", "Index", "Kingdom")</li>
                                 <li>@Html.ActionLink("Droga wojownika wiary", "Index", "Kingdom")</li>
                             </ul>
+                        </li>
+                        <li class="list-group-item no-border">
+                            <p>
+                                <i class="material-icons">map</i>
+                                @Html.ActionLink("Opowiadania", "Index", "Stories")
+                            </p>
                         </li>
                     </ul>
                 </div>

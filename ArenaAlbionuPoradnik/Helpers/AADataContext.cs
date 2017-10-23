@@ -14,5 +14,9 @@ namespace ArenaAlbionuPoradnik.Helpers
         public DbSet<NKingdom> Kingdoms { get; set; }
         public DbSet<NLocation> Locations { get; set; }
         public DbSet<Item> Items { get; set; }
+        public DbSet<Place> Places { get; set; }
+        public DbSet<Enemy> Enemies { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Story> Stories { get; set; }
     }
 }

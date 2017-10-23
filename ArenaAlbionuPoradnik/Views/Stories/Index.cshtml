@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ArenaAlbionuPoradnik.Models.Story>
+
+@{
+    ViewBag.Title = "Historie";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row row-no-margin header">
+<div class="">
+    <h3>Artukuły</h3>
+</div>
+</div>
+<div class="row row-no-margin">
+    <div class="location-description">
+        <p>
+            W tym miejscu znajdziesz artukuły napisane przez graczy, poradniki do gry oraz wiele innych. Możesz też sam napisać artykuł, pamiętaj jednak, że artykuły są weryfikowane przed wsyłaniem.
+        </p>
+    </div>
+</div>
+<div class="row row-no-margin">
+    <div class="location-description">
+        <table class="table table-hover">
+            <tr>
+                <th>
+                    Tytuł
+                </th>
+                <th>
+                    Autor
+                </th>
+                <th>
+                    Data dodania
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(item.Title, "Story", "Stories", new { Id = item.Id }, null)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Regdate)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

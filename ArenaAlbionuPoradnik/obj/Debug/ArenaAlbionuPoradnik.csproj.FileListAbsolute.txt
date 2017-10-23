@@ -181,6 +181,6 @@ C:\Users\Gabriel Pająk\Documents\Jackdaw\ArenaAlbionuPoradnik\bin\Microsoft.Owi
 C:\Users\Gabriel Pająk\Documents\Jackdaw\ArenaAlbionuPoradnik\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Gabriel Pająk\Documents\Jackdaw\ArenaAlbionuPoradnik\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Gabriel Pająk\Documents\Jackdaw\ArenaAlbionuPoradnik\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Gabriel Pająk\Documents\Jackdaw\ArenaAlbionuPoradnik\obj\Debug\ArenaAlbionuPoradnik.csprojResolveAssemblyReference.cache
 C:\Users\Gabriel Pająk\Documents\Jackdaw\ArenaAlbionuPoradnik\obj\Debug\ArenaAlbionuPoradnik.dll
 C:\Users\Gabriel Pająk\Documents\Jackdaw\ArenaAlbionuPoradnik\obj\Debug\ArenaAlbionuPoradnik.pdb
+C:\Users\Gabriel Pająk\Documents\Jackdaw\ArenaAlbionuPoradnik\obj\Debug\ArenaAlbionuPoradnik.csprojResolveAssemblyReference.cache
