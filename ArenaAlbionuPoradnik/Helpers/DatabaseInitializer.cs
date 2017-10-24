@@ -68,9 +68,18 @@ namespace ArenaAlbionuPoradnik.Helpers
 
             var places = new List<Place>()
             {
-                new Place() { Id = 1, NLocationId = 1, PlaceName = "Arena", Description = "Możesz tutaj toczyć pojedynki", TopX = 10, TopY = 10, BottomX = 20, BottomY = 20 },
-                new Place() { Id = 2, NLocationId = 1, PlaceName = "Świątynia", Description = "Wspaniała katedra coś tam coś tam", TopX = 60, TopY = 10, BottomX = 80, BottomY = 20 },
-                new Place() { Id = 3, NLocationId = 1, PlaceName = "Kowal", Description = "Możesz tutaj wytworzyć uzbrojenie", TopX = 80, TopY = 10, BottomX = 1000, BottomY = 20 }
+                new Place() { Id = 1, NLocationId = 1 , PlaceName = "Arena", Description = "Description" , TopX = 51, TopY = 11, BottomX = 188, BottomY = 131 },
+                new Place() { Id = 2, NLocationId = 1 , PlaceName = "Świątnia", Description = "Description" , TopX = 205, TopY = 12, BottomX = 308, BottomY = 140 },
+                new Place() { Id = 3, NLocationId = 1 , PlaceName = "Kowal", Description = "Description" , TopX = 344, TopY = 28, BottomX = 458, BottomY = 118 },
+                new Place() { Id = 4, NLocationId = 1 , PlaceName = "Lichwiarz", Description = "Description" , TopX = 19, TopY = 140, BottomX = 124, BottomY = 224 },
+                new Place() { Id = 5, NLocationId = 1 , PlaceName = "Sklep", Description = "Description" , TopX = 257, TopY = 171, BottomX = 324, BottomY = 240 },
+                new Place() { Id = 6, NLocationId = 1 , PlaceName = "Koszary", Description = "Description" , TopX = 344, TopY = 125, BottomX = 476, BottomY = 218 },
+                new Place() { Id = 7, NLocationId = 1 , PlaceName = "Pieczary", Description = "Description" , TopX = 57, TopY = 228, BottomX = 180, BottomY = 283 },
+                new Place() { Id = 8, NLocationId = 1 , PlaceName = "Droga", Description = "Description" , TopX = 196, TopY = 210, BottomX = 239, BottomY = 252 },
+                new Place() { Id = 9, NLocationId = 1 , PlaceName = "Stadnina", Description = "Description" , TopX = 331, TopY = 226, BottomX = 465, BottomY = 314 },
+                new Place() { Id = 10, NLocationId = 1 , PlaceName = "Bazar", Description = "Description" , TopX = 209, TopY = 295, BottomX = 327, BottomY = 384 },
+                new Place() { Id = 11, NLocationId = 1 , PlaceName = "Gospoda", Description = "Description" , TopX = 39, TopY = 322, BottomX = 168, BottomY = 399 },
+                new Place() { Id = 12, NLocationId = 1 , PlaceName = "Las", Description = "Description" , TopX = 355, TopY = 327, BottomX = 479, BottomY = 399 }
             };
 
             places.ForEach(s => context.Places.Add(s));

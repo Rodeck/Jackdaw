@@ -13,6 +13,11 @@ body {
     background-color: #37474F;
 }
 
+.location-content
+{
+    padding: 10px;
+}
+
 /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
 .row.content 
 {

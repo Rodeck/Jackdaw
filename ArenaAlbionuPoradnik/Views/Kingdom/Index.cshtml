@@ -29,28 +29,22 @@
                 </p>               
             </div>
             <div id="loc_@location.Id" class="collapse location-panel collapsable-content">
-                <div>
-                    <div class="">
-                        @{
-                            var imgSrc = String.Format("data:image/gif;base64,{0}", location.Map);
-                            var mapName = location.Name.Replace(" ", "") + "Map";
+                <div class="location-content">
+                    @{
+                        var imgSrc = String.Format("data:image/gif;base64,{0}", location.Map);
+                        var mapName = location.Name.Replace(" ", "") + "Map";
+                    }
+
+                    <img src="@imgSrc" usemap="#@mapName"/>
+                    <map name="@mapName">
+                        @foreach (ArenaAlbionuPoradnik.Models.Place place in location.Place)
+                        {
+                            string style = "position: relative; left: " + place.TopX + "px; top: " + place.TopY + "px";
+                            string coords = place.TopX + "," + place.TopY + "," + place.BottomX + "," + place.BottomY;
+                            //<button style="@style">@place.PlaceName</button>
+                            <area shape="rect" coords="@coords" alt="@place.PlaceName" href="#">
                         }
-
-                        <img src="@imgSrc" usemap="#@mapName"/>
-                        <map name="@mapName">
-                            @foreach (ArenaAlbionuPoradnik.Models.Place place in location.Place)
-                            {
-                                string style = "position: relative; left: " + place.TopX + "px; top: " + place.TopY + "px";
-                                string coords = place.TopX + "," + place.TopY + "," + place.BottomX + "," + place.BottomY;
-                                //<button style="@style">@place.PlaceName</button>
-                                <area shape="rect" coords="@coords" alt="@place.PlaceName">
-                            }
-                        </map>
-                        
-                    </div>
-                    <div class="">
-
-                    </div>
+                    </map>                       
                 </div>
             </div>
             }
