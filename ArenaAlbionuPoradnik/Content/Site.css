@@ -1,7 +1,30 @@
-﻿html
+﻿* { font-family: Roboto, Arial, sans-serif !important;}
+
+h1, h2, h3
 {
-    font-family: 'Roboto', 'Helvetica', sans-serif !important;
-    font-weight: 500;
+    margin: 15px;
+}
+
+html
+{
+    font-weight: 400;
+}
+
+i
+{
+    font-family: 'Material Icons', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+.menu-icon
+{
+    display:inline;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.menu-item
+{
+    display:inline;
 }
 
 body {
@@ -15,7 +38,12 @@ body {
 
 .location-content
 {
-    padding: 10px;
+    padding: 10px 0px 10px 20px;
+}
+
+.location-data
+{
+    padding: 0px 30px 10px 20px;
 }
 
 /* Set height of the grid so .sidenav can be 100% (adjust if needed) */

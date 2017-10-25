@@ -7,6 +7,8 @@
           rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&lang=en" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <link href="~/Content/hover.css" rel="stylesheet" />
     <title>Poradnik</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -22,11 +24,8 @@
                 </div>
                 <div class="max-width">
                     <ul class="list-group">
-                        <li class="list-group-item no-border" data-toggle="collapse" data-target="#kingdoms">
-                            <p>
-                                <i class="material-icons">map</i>
-                                Królestwa
-                            </p>
+                        <li class="list-group-item no-border" data-toggle="collapse" data-target="#kingdoms">                           
+                            <i class="material-icons menu-icon">map</i><p class="menu-item">Królestwa</p>
                             <ul id ="kingdoms" class="collapse list-group">
                                 <li class="list-group-item list-item no-border">@Html.ActionLink("Albion", "Index", "Kingdom", new { Id = 1 }, null)</li>
                                 <li class="list-group-item list-item no-border">@Html.ActionLink("Zigura", "Index", "Kingdom")</li>

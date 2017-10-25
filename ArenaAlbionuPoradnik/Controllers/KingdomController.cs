@@ -40,6 +40,13 @@ namespace ArenaAlbionuPoradnik.Controllers
             return View(kingdom);
         }
 
+        [HttpPost]
+        public ActionResult LocationData(int placeId)
+        {
+            var model = db.Places.Where(p => p.Id == placeId).FirstOrDefault();
+            return PartialView("_LocationData", model);
+        }
+
         private static ISessionFactory CreateSessionFactory()
         {
 

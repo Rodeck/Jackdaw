@@ -23,31 +23,53 @@
         <div class="list-group">
             @foreach (ArenaAlbionuPoradnik.Models.NLocation location in Model.NLocation)
             {
-            <div class="list-group-item location-panel list-item collapsable-area-gray" data-toggle="collapse" data-target="#loc_@location.Id">
+            <div class="list-group-item location-panel hvr-hollow" data-toggle="collapse" data-target="#loc_@location.Id">
                 <p>
                     @location.Name
                 </p>               
             </div>
             <div id="loc_@location.Id" class="collapse location-panel collapsable-content">
-                <div class="location-content">
-                    @{
-                        var imgSrc = String.Format("data:image/gif;base64,{0}", location.Map);
-                        var mapName = location.Name.Replace(" ", "") + "Map";
-                    }
-
-                    <img src="@imgSrc" usemap="#@mapName"/>
-                    <map name="@mapName">
-                        @foreach (ArenaAlbionuPoradnik.Models.Place place in location.Place)
-                        {
-                            string style = "position: relative; left: " + place.TopX + "px; top: " + place.TopY + "px";
-                            string coords = place.TopX + "," + place.TopY + "," + place.BottomX + "," + place.BottomY;
-                            //<button style="@style">@place.PlaceName</button>
-                            <area shape="rect" coords="@coords" alt="@place.PlaceName" href="#">
+                <div class="row">
+                    <div class="location-content col-sm-5">
+                        @{
+                            var imgSrc = String.Format("data:image/gif;base64,{0}", location.Map);
+                            var mapName = location.Name.Replace(" ", "") + "Map";
                         }
-                    </map>                       
-                </div>
+
+                        <img src="@imgSrc" usemap="#@mapName" />
+                        <map name="@mapName">
+                            @foreach (ArenaAlbionuPoradnik.Models.Place place in location.Place)
+                            {
+                                string style = "position: relative; left: " + place.TopX + "px; top: " + place.TopY + "px";
+                                string coords = place.TopX + "," + place.TopY + "," + place.BottomX + "," + place.BottomY;
+                                //<button style="@style">@place.PlaceName</button>
+                                <area class="map-area" id="@place.Id" shape="rect" coords="@coords" alt="@place.PlaceName" href="">
+                            }
+                        </map>
+                    </div>
+                    <div id="location_data" class="col-sm-7 location-data">
+
+                    </div>
+                </div>               
             </div>
             }
         </div>
 </div>
 </div>
+<script>
+    $(".map-area").on("click", function(e)
+    {
+        e.preventDefault();
+         $.ajax({
+             url: "/Kingdom/LocationData",
+             type: "post",
+             data: {
+                 placeId: $(this).attr("id")
+             }
+         })
+        .done(function (result) {
+            $("#location_data").html(result);
+        });
+    });
+
+</script>
