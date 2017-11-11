@@ -33,5 +33,6 @@ public enum EquipableType
     Chest,
     Shoulders,
     Greaves,
-    Shields
+    Shields,
+    Helmet
 }

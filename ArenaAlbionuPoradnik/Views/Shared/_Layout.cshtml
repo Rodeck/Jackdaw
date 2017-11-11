@@ -54,6 +54,16 @@
                                 <li class="list-group-item list-item no-border">@Html.ActionLink("Napierśniki", "ArmorType", "Weapons", new { type = "Chest" }, null)</li>
                             </ul>
                         </li>
+                        <li class="list-group-item no-border" data-toggle="collapse" data-target="#items">
+                            <p>
+                                <i class="material-icons">map</i>
+                                Przedmioty
+                            </p>
+                            <ul id="items" class="collapse list-group">
+                                <li class="list-group-item list-item no-border">@Html.ActionLink("Surowce", "RawMaterials", "Item")</li>
+                                <li class="list-group-item list-item no-border">@Html.ActionLink("Surowce(razem)", "ItemType", "Item", new { type = "RawMaterial" }, null)</li>
+                            </ul>
+                        </li>
                         <li class="list-group-item no-border" data-toggle="collapse" data-target="#tutorials">
                             <p>
                                 <i class="material-icons">map</i>

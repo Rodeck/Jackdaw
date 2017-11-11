@@ -8,6 +8,31 @@ namespace ArenaAlbionuPoradnik.Helpers
 {
     public class DatabaseInitializer: System.Data.Entity.DropCreateDatabaseAlways<AADataContext>
     {
+
+        public List<Item> GetItemsById(List<Item> all, List<int> ids)
+        {
+            List<Item> items = new List<Item>();
+
+            foreach(int id in ids)
+            {
+                items.Add(all.Where(s => s.Id == id).FirstOrDefault());
+            }
+
+            return items;
+        }
+
+        public List<NLocation> GetItemsById(List<NLocation> all, List<int> ids)
+        {
+            List<NLocation> items = new List<NLocation>();
+
+            foreach (int id in ids)
+            {
+                items.Add(all.Where(s => s.Id == id).FirstOrDefault());
+            }
+
+            return items;
+        }
+
         protected override void Seed(AADataContext context)
         {
             var kingdoms = new List<NKingdom>()
@@ -27,8 +52,31 @@ namespace ArenaAlbionuPoradnik.Helpers
                 new Weapon() { Id = 3, Attack = 152, ConditionUse = 10, Name = "Mamuci Długi Kieł", Image = Helper.GetItem(), Durability = 5200, Type = ItemType.Weapon, WeaponType = EquipableType.DoubleHanded, Strength = 10 },
                 new Armor() { Id = 4, Defence = 12, ConditionUse = 5, Name = "Bryna", Image = Helper.GetItem(), Durability = 2500, Type = ItemType.Armor, WeaponType = EquipableType.Chest, Strength = 10 } ,
                 new Armor() { Id = 5, Defence = 123, ConditionUse = 1, Name = "Zbroja Legionisty", Image = Helper.GetItem(), Durability = 1, Type = ItemType.Armor, WeaponType = EquipableType.Chest, Strength = 10 },
-                new Armor() { Id = 6, Defence = 300, ConditionUse = 10, Name = "Kirys Zmory", Image = Helper.GetItem(), Durability = 5200, Type = ItemType.Armor, WeaponType = EquipableType.Chest, Strength = 10 }
+                new Armor() { Id = 6, Defence = 300, ConditionUse = 10, Name = "Kirys Zmory", Image = Helper.GetItem(), Durability = 5200, Type = ItemType.Armor, WeaponType = EquipableType.Chest, Strength = 10 },
+                new Armor() { Id = 7, Name = "Hełm Żebrowy", ConditionUse = 1, Defence = 9, Durability = 220, Image = Helper.GetItem(), Strength = 1, Type = ItemType.Armor, WeaponType = EquipableType.Helmet },
+                new Armor() { Id = 8, Name = "Psi Pysk", ConditionUse = 3, Defence = 35, Durability = 220, Image = Helper.GetItem(), Strength = 13, Type = ItemType.Armor, WeaponType = EquipableType.Helmet },
+                new Armor() { Id = 9, Name = "Bryna", ConditionUse = 2, Defence = 38, Durability = 300, Image = Helper.GetItem(), Strength = 3, Type = ItemType.Armor, WeaponType = EquipableType.Helmet },
+                new Weapon() { Id = 9, Name = "Maczuga", ConditionUse = 1, Attack = 38, Durability = 300, Image = Helper.GetItem(), Strength = 3, Type = ItemType.Armor, WeaponType = EquipableType.Helmet },
+                new Item() { Id = 90, Image = Helper.GetItem(), Name = "Stal", Type = ItemType.ProcessedMaterial },
+                new Item() { Id = 100, Image = Helper.GetItem(), Name = "Żelazo", Type = ItemType.RawMaterial },
+                new Item() { Id = 110, Image = Helper.GetItem(), Name = "Węgiel", Type = ItemType.RawMaterial }
             };
+                
+            var processedMaterials = new List<ProcessedMaterial>()
+            {
+                new ProcessedMaterial() { Id = 1, Name = "Stal", Image = Helper.GetRaw(),
+                }
+            };
+
+            processedMaterials.ForEach(s => context.ProcessedMaterials.Add(s));
+
+            var rawMaterials = new List<RawMaterial>()
+            {
+                new RawMaterial() { Id = 1, Image = Helper.GetRaw(), Name = "Żelazo", Production = processedMaterials.Where(s => s.Id == 1).ToList() },
+                new RawMaterial() { Id = 2, Image = Helper.GetRaw(), Name = "Węgiel", Production = processedMaterials.Where(s => s.Id == 1).ToList() }
+            };
+
+            items.Where(s => s.Id == 10).FirstOrDefault().Production = GetItemsById(items, new List<int>() { 7, 8, 90 });
 
 
             var locations = new List<NLocation>()
@@ -49,6 +97,7 @@ namespace ArenaAlbionuPoradnik.Helpers
             };
 
 
+
             var enemies = new List<Enemy>()
             {
                 new Enemy() { Id = 1, Attack = 10, AttackDeviation = 5, Condition = 100, ConditionUse = 2, Defence = 30, Drop = items, Health = 100, Name = "Wilk", Type = EnemyType.Animal },
@@ -64,6 +113,7 @@ namespace ArenaAlbionuPoradnik.Helpers
             locations.ForEach(s => context.Locations.Add(s));
             enemies.ForEach(s => context.Enemies.Add(s));
             items.ForEach(s => context.Items.Add(s));
+            rawMaterials.ForEach(s => context.RawMaterials.Add(s));
             context.SaveChanges();
 
             var places = new List<Place>()

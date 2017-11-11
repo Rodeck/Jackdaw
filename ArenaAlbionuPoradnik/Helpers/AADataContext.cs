@@ -18,5 +18,7 @@ namespace ArenaAlbionuPoradnik.Helpers
         public DbSet<Enemy> Enemies { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Story> Stories { get; set; }
+        public DbSet<ProcessedMaterial> ProcessedMaterials { get; set; }
+        public DbSet<RawMaterial> RawMaterials { get; set; }
     }
 }
