@@ -11,9 +11,13 @@ namespace ArenaAlbionuPoradnik.Models
         public ItemType Type { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
+        public int ProductionExperience { get; set; }
+        public int ProductionTime { get; set; }
+        public int ProductionCost { get; set; }
         public virtual ICollection<Enemy> Enemies { get; set; }
         public virtual ICollection<NLocation> Locations { get; set; }
         public virtual ICollection<Item> Production { get; set; }
+        public virtual ICollection<Item> MaterialsNeeded { get; set; }
     }
 }
 

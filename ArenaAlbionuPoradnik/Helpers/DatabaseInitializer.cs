@@ -56,27 +56,38 @@ namespace ArenaAlbionuPoradnik.Helpers
                 new Armor() { Id = 7, Name = "Hełm Żebrowy", ConditionUse = 1, Defence = 9, Durability = 220, Image = Helper.GetItem(), Strength = 1, Type = ItemType.Armor, WeaponType = EquipableType.Helmet },
                 new Armor() { Id = 8, Name = "Psi Pysk", ConditionUse = 3, Defence = 35, Durability = 220, Image = Helper.GetItem(), Strength = 13, Type = ItemType.Armor, WeaponType = EquipableType.Helmet },
                 new Armor() { Id = 9, Name = "Bryna", ConditionUse = 2, Defence = 38, Durability = 300, Image = Helper.GetItem(), Strength = 3, Type = ItemType.Armor, WeaponType = EquipableType.Helmet },
-                new Weapon() { Id = 9, Name = "Maczuga", ConditionUse = 1, Attack = 38, Durability = 300, Image = Helper.GetItem(), Strength = 3, Type = ItemType.Armor, WeaponType = EquipableType.Helmet },
+                new Weapon() { Id = 10, Name = "Maczuga", ConditionUse = 1, Attack = 38, Durability = 300, Image = Helper.GetItem(), Strength = 3, Type = ItemType.Weapon, WeaponType = EquipableType.OneHanded },
+                new Weapon() { Id = 11, Name = "Pika", ConditionUse = 1, Attack = 38, Durability = 300, Image = Helper.GetItem(), Strength = 3, Type = ItemType.Weapon, WeaponType = EquipableType.DoubleHanded },
+                new Weapon() { Id = 12, Name = "Cep Bojowy", ConditionUse = 1, Attack = 38, Durability = 300, Image = Helper.GetItem(), Strength = 3, Type = ItemType.Weapon, WeaponType = EquipableType.OneHanded },
+                new Weapon() { Id = 13, Name = "Młot Bojowy", ConditionUse = 1, Attack = 38, Durability = 300, Image = Helper.GetItem(), Strength = 3, Type = ItemType.Weapon, WeaponType = EquipableType.OneHanded },
                 new Item() { Id = 90, Image = Helper.GetItem(), Name = "Stal", Type = ItemType.ProcessedMaterial },
                 new Item() { Id = 100, Image = Helper.GetItem(), Name = "Żelazo", Type = ItemType.RawMaterial },
+                new Item() { Id = 101, Image = Helper.GetItem(), Name = "Skóra garbowana", Type = ItemType.ProcessedMaterial },
+                new Item() { Id = 102, Image = Helper.GetItem(), Name = "Skóra", Type = ItemType.RawMaterial },
+                new Item() { Id = 103, Image = Helper.GetItem(), Name = "Czarnoziem", Type = ItemType.RawMaterial },
+                new Item() { Id = 104, Image = Helper.GetItem(), Name = "Len", Type = ItemType.ProcessedMaterial },
+                new Item() { Id = 105, Image = Helper.GetItem(), Name = "Sznurek", Type = ItemType.ProcessedMaterial },
+                new Item() { Id = 105, Image = Helper.GetItem(), Name = "Dębowy drąg", Type = ItemType.RawMaterial },
                 new Item() { Id = 110, Image = Helper.GetItem(), Name = "Węgiel", Type = ItemType.RawMaterial }
             };
-                
-            var processedMaterials = new List<ProcessedMaterial>()
-            {
-                new ProcessedMaterial() { Id = 1, Name = "Stal", Image = Helper.GetRaw(),
-                }
-            };
 
-            processedMaterials.ForEach(s => context.ProcessedMaterials.Add(s));
+            items.Where(s => s.Id == 100).FirstOrDefault().Production = GetItemsById(items, new List<int>() { 7, 8, 90 });
+            items.Where(s => s.Id == 110).FirstOrDefault().Production = GetItemsById(items, new List<int>() { 7, 8, 90 });
+            items.Where(s => s.Id == 7).FirstOrDefault().Production = GetItemsById(items, new List<int>() { 100 });
+            items.Where(s => s.Id == 8).FirstOrDefault().Production = GetItemsById(items, new List<int>() { 90, 101, 105 });
+            items.Where(s => s.Id == 9).FirstOrDefault().Production = GetItemsById(items, new List<int>() { 101, 100, 105 });
+            items.Where(s => s.Id == 10).FirstOrDefault().Production = GetItemsById(items, new List<int>() { 105, 100 });
+            items.Where(s => s.Id == 13).FirstOrDefault().Production = GetItemsById(items, new List<int>() { 105, 90 });
+            items.Where(s => s.Id == 11).FirstOrDefault().Production = GetItemsById(items, new List<int>() { 105, 100 });
+            items.Where(s => s.Id == 12).FirstOrDefault().Production = GetItemsById(items, new List<int>() { 105, 90, 105 });
+            items.Where(s => s.Id == 102).FirstOrDefault().Production = GetItemsById(items, new List<int>() { 101 });
+            items.Where(s => s.Id == 103).FirstOrDefault().Production = GetItemsById(items, new List<int>() { 104 });
 
-            var rawMaterials = new List<RawMaterial>()
-            {
-                new RawMaterial() { Id = 1, Image = Helper.GetRaw(), Name = "Żelazo", Production = processedMaterials.Where(s => s.Id == 1).ToList() },
-                new RawMaterial() { Id = 2, Image = Helper.GetRaw(), Name = "Węgiel", Production = processedMaterials.Where(s => s.Id == 1).ToList() }
-            };
+            items.Where(s => s.Id == 90).FirstOrDefault().Production = GetItemsById(items, new List<int>() { 8, 13, 12});
+            items.Where(s => s.Id == 101).FirstOrDefault().Production = GetItemsById(items, new List<int>() { 8 , 9 });
+            items.Where(s => s.Id == 104).FirstOrDefault().Production = GetItemsById(items, new List<int>() { 105 });
+            items.Where(s => s.Id == 105).FirstOrDefault().Production = GetItemsById(items, new List<int>() { 8, 9, 12 });
 
-            items.Where(s => s.Id == 10).FirstOrDefault().Production = GetItemsById(items, new List<int>() { 7, 8, 90 });
 
 
             var locations = new List<NLocation>()
@@ -113,7 +124,6 @@ namespace ArenaAlbionuPoradnik.Helpers
             locations.ForEach(s => context.Locations.Add(s));
             enemies.ForEach(s => context.Enemies.Add(s));
             items.ForEach(s => context.Items.Add(s));
-            rawMaterials.ForEach(s => context.RawMaterials.Add(s));
             context.SaveChanges();
 
             var places = new List<Place>()
@@ -131,6 +141,8 @@ namespace ArenaAlbionuPoradnik.Helpers
                 new Place() { Id = 11, NLocationId = 1 , PlaceName = "Gospoda", Description = "Możesz tu zagrać w kości. Obstawiasz liczbę i czekasz na zakończenie tury. Zebrana kwota dzielona jest pomiędzy zwycięzców. Możesz też wynająć jeden z dostępnych pokoi, aby regenerować się szybciej. W gospodzie możesz porozmawiać na lokalnym \"czacie\" z rycerzami ze wszystkich podobnych miejsc w grze." , TopX = 39, TopY = 322, BottomX = 168, BottomY = 399 },
                 new Place() { Id = 12, NLocationId = 1 , PlaceName = "Las", Description = "Description" , TopX = 355, TopY = 327, BottomX = 479, BottomY = 399 }
             };
+
+            places.Where(s => s.Id == 3).FirstOrDefault().Production = GetItemsById(items, new List<int>() { 7, 8, 9, 10, 11, 12, 13 });
 
             places.ForEach(s => context.Places.Add(s));
             context.SaveChanges();

@@ -60,8 +60,8 @@
                                 Przedmioty
                             </p>
                             <ul id="items" class="collapse list-group">
-                                <li class="list-group-item list-item no-border">@Html.ActionLink("Surowce", "RawMaterials", "Item")</li>
-                                <li class="list-group-item list-item no-border">@Html.ActionLink("Surowce(razem)", "ItemType", "Item", new { type = "RawMaterial" }, null)</li>
+                                <li class="list-group-item list-item no-border">@Html.ActionLink("Surowce podstawowe", "ItemType", "Item", new { type = "RawMaterial" }, null)</li>
+                                <li class="list-group-item list-item no-border">@Html.ActionLink("Surowce wytworzone", "ItemType", "Item", new { type = "ProcessedMaterial" }, null)</li>
                             </ul>
                         </li>
                         <li class="list-group-item no-border" data-toggle="collapse" data-target="#tutorials">

@@ -9,4 +9,13 @@
     <div>
         <p>@Model.Description</p>
     </div>
+    <div>
+        @if (Model.Production != null && Model.Production.Count > 0)
+        {
+            var text = String.Join(",", Model.Production.ToList().Select(s => s.Name).ToArray());
+            <text>
+                @text
+            </text>
+        }
+</div>
 </div>

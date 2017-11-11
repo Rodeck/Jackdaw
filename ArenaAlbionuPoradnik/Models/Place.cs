@@ -19,5 +19,7 @@ namespace ArenaAlbionuPoradnik.Models
 
         public string PlaceName { get; set; }
         public string Description { get; set; }
+
+        public virtual ICollection<Item> Production { get; set; }
     }
 }

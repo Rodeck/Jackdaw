@@ -1,0 +1,27 @@
+﻿@model DataMiner.Models.ImageMine
+@{
+    ViewBag.Title = "Download images";
+}
+
+<h2>GetImages</h2>
+<hr />
+@if (Model.Message != null)
+{
+    <text>
+    @Model.Message
+    </text>
+}
+@using (Html.BeginForm("MineImages", "Home"))
+{
+    <p>Base path</p>
+    <input type="text" id="ss" name="basePath" />
+    <p>Extension (.jpg, .gif ...)</p>
+    <input type="text" id="ss" name="extension" />
+    <p>Starting value</p>
+    <input type="text" id="ss" name="start" />
+    <p>Stop value</p>
+    <input type="text" id="ss" name="stop" />
+    <p>Local storage path</p>
+    <input type="text" id="ss" name="localPath" />
+    <input type = "submit" value = "Fetch" />
+}
