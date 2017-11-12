@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace DataMiner.Models
 {
@@ -9,6 +10,16 @@ namespace DataMiner.Models
     {
         public string Message { get; set; }
         public MessageType MessageType { get; set; }
+
+        public static List<SelectListItem> GetSelection()
+        {
+            return new List<SelectListItem>()
+            {
+                new SelectListItem() {Text="Item", Value="1"},
+                new SelectListItem() { Text="Map", Value="2"},
+
+            };
+        }
     }
 
     public enum MessageType
@@ -16,5 +27,7 @@ namespace DataMiner.Models
         Success,
         Error
     }
+
+    
 
 } 

@@ -18,6 +18,8 @@ namespace ArenaAlbionuPoradnik.Models
         public virtual ICollection<NLocation> Locations { get; set; }
         public virtual ICollection<Item> Production { get; set; }
         public virtual ICollection<Item> MaterialsNeeded { get; set; }
+
+        public int? TemporaryImageId { get; set; }
     }
 }
 

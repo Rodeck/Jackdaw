@@ -28,16 +28,7 @@ namespace ArenaAlbionuPoradnik.Controllers
         // GET: Kingdom
         public ActionResult Index(int Id)
         {
-            NKingdom kingdom;
-
-            //using (session.BeginTransaction())
-            //{
-            //    kingdom = session.CreateCriteria(typeof(NKingdom)).List<NKingdom>().Where(k => k.Id == Id).FirstOrDefault();            
-            //}
-
-            kingdom = db.Kingdoms.ToList()[0];
-
-            return View(kingdom);
+            return View(db.Kingdoms.Where(s => s.Id == Id).FirstOrDefault());
         }
 
         [HttpPost]

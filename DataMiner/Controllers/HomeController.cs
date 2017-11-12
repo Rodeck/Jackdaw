@@ -36,10 +36,10 @@ namespace DataMiner.Controllers
         }
 
         [HttpPost]
-        public ActionResult MineImages(string basePath, string extension, int start, int stop, string localPath)
+        public ActionResult MineImages(string basePath, string extension, int start, int stop, string localPath, string type_)
         {
 
-            ImageMineUrlData urlData = new ImageMineUrlData() { BasePath = basePath, Extension = extension, LocalPath = localPath, Start = start, Stop = stop };
+            ImageMineUrlData urlData = new ImageMineUrlData() { BasePath = basePath, Extension = extension, LocalPath = localPath, Start = start, Stop = stop, MineType = type_ };
 
            
             return View("GetImages", GetData(urlData));
@@ -49,7 +49,7 @@ namespace DataMiner.Controllers
         {
             ImageMine model = new ImageMine();
             int exceptionCount = 0;
-            int maxExceptionCount = 2;
+            int maxExceptionCount = 20;
             string deliminator = "<//br>";
 
             try
@@ -58,7 +58,7 @@ namespace DataMiner.Controllers
                 {
                     try
                     {
-                        HttpWebRequest webReq = (HttpWebRequest)HttpWebRequest.Create(urlData.BasePath + "//" + i + "." + urlData.Extension);
+                        HttpWebRequest webReq = (HttpWebRequest)HttpWebRequest.Create(urlData.GetUrl(i));
                         webReq.CookieContainer = new CookieContainer();
                         webReq.Method = "GET";
                         using (WebResponse response = webReq.GetResponse())
@@ -103,5 +103,37 @@ namespace DataMiner.Controllers
         public int Start { get; set; }
         public int Stop { get; set; }
         public string LocalPath { get; set; }
+        public string MineType { get; set; }
+
+        public string GetUrl(int id)
+        {
+            string path = BasePath;
+
+            switch(this.MineType)
+            {
+                case "item":
+                    {
+                        path += "//" + id + "." + Extension;
+                        break;
+                    }
+                case "map":
+                    {
+                        string _id = "{0}{1}";
+                        if (id < 10)
+                        {
+                            _id = String.Format(_id, id, "0");
+                        }
+                        else
+                        {
+                            _id = id.ToString();
+                        }
+                        path += _id + "." + Extension;
+                        break;
+                    }
+            }
+
+            return path;
+        }
     }
+
 }

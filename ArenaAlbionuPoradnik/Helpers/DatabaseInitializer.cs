@@ -1,8 +1,11 @@
 ﻿using ArenaAlbionuPoradnik.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 
 namespace ArenaAlbionuPoradnik.Helpers
 {
@@ -33,13 +36,51 @@ namespace ArenaAlbionuPoradnik.Helpers
             return items;
         }
 
+        private void LoadImage(Item item)
+        {
+            string location = WebConfigurationManager.AppSettings["ItemImageLocation"];
+
+            string path = location + "//" + item.TemporaryImageId + ".gif";
+
+            item.Image = GetImage(path);
+        }
+
+        private void LoadLocationImage(NLocation location)
+        {
+            string basePath = WebConfigurationManager.AppSettings["MapImageLocation"];
+            string path = basePath + "//" + location.TemporaryImageId + ".jpg";
+
+            location.Map = GetImage(path);
+
+        }
+
+        public string GetImage(string path)
+        {
+            using (Image image = Image.FromFile(path))
+            {
+                using (MemoryStream m = new MemoryStream())
+                {
+                    image.Save(m, image.RawFormat);
+                    byte[] imageBytes = m.ToArray();
+
+                    // Convert byte[] to Base64 String
+                    return Convert.ToBase64String(imageBytes);
+                }
+            }
+        }
+
         protected override void Seed(AADataContext context)
         {
             var kingdoms = new List<NKingdom>()
             {
                 new NKingdom() { Id = 1, Name = "Albion" },
                 new NKingdom() { Id = 2, Name = "Zigura" },
-                new NKingdom() { Id = 3, Name = "Orgrod" }
+                new NKingdom() { Id = 3, Name = "Orgrod" },
+                new NKingdom() { Id = 4, Name = "Dorstar" },
+                new NKingdom() { Id = 5, Name = "Amazonki" },
+                new NKingdom() { Id = 6, Name = "Tereny Neutralne" },
+                new NKingdom() { Id = 7, Name = "Hardron" },
+                new NKingdom() { Id = 8, Name = "KurKor" }
             };
 
             kingdoms.ForEach(s => context.Kingdoms.Add(s));
@@ -53,22 +94,24 @@ namespace ArenaAlbionuPoradnik.Helpers
                 new Armor() { Id = 4, Defence = 12, ConditionUse = 5, Name = "Bryna", Image = Helper.GetItem(), Durability = 2500, Type = ItemType.Armor, WeaponType = EquipableType.Chest, Strength = 10 } ,
                 new Armor() { Id = 5, Defence = 123, ConditionUse = 1, Name = "Zbroja Legionisty", Image = Helper.GetItem(), Durability = 1, Type = ItemType.Armor, WeaponType = EquipableType.Chest, Strength = 10 },
                 new Armor() { Id = 6, Defence = 300, ConditionUse = 10, Name = "Kirys Zmory", Image = Helper.GetItem(), Durability = 5200, Type = ItemType.Armor, WeaponType = EquipableType.Chest, Strength = 10 },
-                new Armor() { Id = 7, Name = "Hełm Żebrowy", ConditionUse = 1, Defence = 9, Durability = 220, Image = Helper.GetItem(), Strength = 1, Type = ItemType.Armor, WeaponType = EquipableType.Helmet },
-                new Armor() { Id = 8, Name = "Psi Pysk", ConditionUse = 3, Defence = 35, Durability = 220, Image = Helper.GetItem(), Strength = 13, Type = ItemType.Armor, WeaponType = EquipableType.Helmet },
+                new Armor() { Id = 7, Name = "Hełm Żebrowy", ConditionUse = 1, Defence = 9, Durability = 220, Image = Helper.GetItem(), Strength = 1, Type = ItemType.Armor, WeaponType = EquipableType.Helmet, TemporaryImageId = 2 },
+                new Armor() { Id = 8, Name = "Psi Pysk", ConditionUse = 3, Defence = 35, Durability = 220, Image = Helper.GetItem(), Strength = 13, Type = ItemType.Armor, WeaponType = EquipableType.Helmet, TemporaryImageId = 74 },
                 new Armor() { Id = 9, Name = "Bryna", ConditionUse = 2, Defence = 38, Durability = 300, Image = Helper.GetItem(), Strength = 3, Type = ItemType.Armor, WeaponType = EquipableType.Helmet },
                 new Weapon() { Id = 10, Name = "Maczuga", ConditionUse = 1, Attack = 38, Durability = 300, Image = Helper.GetItem(), Strength = 3, Type = ItemType.Weapon, WeaponType = EquipableType.OneHanded },
                 new Weapon() { Id = 11, Name = "Pika", ConditionUse = 1, Attack = 38, Durability = 300, Image = Helper.GetItem(), Strength = 3, Type = ItemType.Weapon, WeaponType = EquipableType.DoubleHanded },
                 new Weapon() { Id = 12, Name = "Cep Bojowy", ConditionUse = 1, Attack = 38, Durability = 300, Image = Helper.GetItem(), Strength = 3, Type = ItemType.Weapon, WeaponType = EquipableType.OneHanded },
                 new Weapon() { Id = 13, Name = "Młot Bojowy", ConditionUse = 1, Attack = 38, Durability = 300, Image = Helper.GetItem(), Strength = 3, Type = ItemType.Weapon, WeaponType = EquipableType.OneHanded },
                 new Item() { Id = 90, Image = Helper.GetItem(), Name = "Stal", Type = ItemType.ProcessedMaterial },
-                new Item() { Id = 100, Image = Helper.GetItem(), Name = "Żelazo", Type = ItemType.RawMaterial },
+                new Item() { Id = 100, Image = Helper.GetItem(), Name = "Żelazo", Type = ItemType.RawMaterial, TemporaryImageId = 47 },
                 new Item() { Id = 101, Image = Helper.GetItem(), Name = "Skóra garbowana", Type = ItemType.ProcessedMaterial },
-                new Item() { Id = 102, Image = Helper.GetItem(), Name = "Skóra", Type = ItemType.RawMaterial },
+                new Item() { Id = 102, Image = Helper.GetItem(), Name = "Skóra", Type = ItemType.RawMaterial, TemporaryImageId = 48 },
                 new Item() { Id = 103, Image = Helper.GetItem(), Name = "Czarnoziem", Type = ItemType.RawMaterial },
                 new Item() { Id = 104, Image = Helper.GetItem(), Name = "Len", Type = ItemType.ProcessedMaterial },
                 new Item() { Id = 105, Image = Helper.GetItem(), Name = "Sznurek", Type = ItemType.ProcessedMaterial },
-                new Item() { Id = 105, Image = Helper.GetItem(), Name = "Dębowy drąg", Type = ItemType.RawMaterial },
-                new Item() { Id = 110, Image = Helper.GetItem(), Name = "Węgiel", Type = ItemType.RawMaterial }
+                new Item() { Id = 105, Image = Helper.GetItem(), Name = "Dębowy drąg", Type = ItemType.RawMaterial, TemporaryImageId = 46 },
+                new Item() { Id = 110, Image = Helper.GetItem(), Name = "Węgiel", Type = ItemType.RawMaterial },
+                new Item() { Id = 111, Image = Helper.GetItem(), Name = "Kamień", Type = ItemType.RawMaterial, TemporaryImageId = 49 },
+                new Item() { Id = 112, Image = Helper.GetItem(), Name = "Rogi", Type = ItemType.RawMaterial, TemporaryImageId = 44 }
             };
 
             items.Where(s => s.Id == 100).FirstOrDefault().Production = GetItemsById(items, new List<int>() { 7, 8, 90 });
@@ -89,25 +132,43 @@ namespace ArenaAlbionuPoradnik.Helpers
             items.Where(s => s.Id == 105).FirstOrDefault().Production = GetItemsById(items, new List<int>() { 8, 9, 12 });
 
 
+            items.Where(i => i.TemporaryImageId != null).ToList().ForEach(i => LoadImage(i));
 
             var locations = new List<NLocation>()
             {
                 new NLocation() { Id = 1, Name = "Dolne Miasto", NKingdomId = 1, Map = Helper.GetMap() },
                 new NLocation() { Id = 2, Name = "Górne Miasto", NKingdomId = 1, Map = Helper.GetMap() },
-                new NLocation() { Id = 3, Name = "Las", NKingdomId = 1, Map = Helper.GetMap() },
+                new NLocation() { Id = 13, Name = "Wioska", NKingdomId = 1, TemporaryImageId = 4 },
 
-                new NLocation() { Id = 4, Name = "Zigura", NKingdomId = 2, Map = Helper.GetMap() },
-                new NLocation() { Id = 5, Name = "Pustynia", NKingdomId = 2, Map = Helper.GetMap() },
-                new NLocation() { Id = 6, Name = "Wioska", NKingdomId = 2, Map = Helper.GetMap() },
-                new NLocation() { Id = 7, Name = "Port", NKingdomId = 2, Map = Helper.GetMap() },
+                new NLocation() { Id = 3, Name = "Las", NKingdomId = 5, TemporaryImageId =  0},
+                new NLocation() { Id = 3, Name = "Osada Amazonek", NKingdomId = 5, TemporaryImageId = 16  },
 
-                new NLocation() { Id = 8, Name = "Port", NKingdomId = 3, Map = Helper.GetMap() },
-                new NLocation() { Id = 9, Name = "Orgrod", NKingdomId = 3, Map = Helper.GetMap() },
-                new NLocation() { Id = 10, Name = "Wioska", NKingdomId = 3, Map = Helper.GetMap() },
-                new NLocation() { Id = 11, Name = "Tajga", NKingdomId = 3, Map = Helper.GetMap() },
+                new NLocation() { Id = 12, Name = "Dorstar", NKingdomId = 4, TemporaryImageId = 10 },
+
+                new NLocation() { Id = 4, Name = "Zigura", NKingdomId = 2, TemporaryImageId = 7 },
+                new NLocation() { Id = 5, Name = "Pustynia", NKingdomId = 2, TemporaryImageId = 6 },
+                new NLocation() { Id = 6, Name = "Wioska", NKingdomId = 2, TemporaryImageId = 9 },
+                new NLocation() { Id = 7, Name = "Port", NKingdomId = 2, TemporaryImageId = 8 },
+
+                new NLocation() { Id = 8, Name = "Port", NKingdomId = 3, TemporaryImageId = 11 },
+                new NLocation() { Id = 9, Name = "Orgrod", NKingdomId = 3, TemporaryImageId = 12 },
+                new NLocation() { Id = 10, Name = "Wioska", NKingdomId = 3, TemporaryImageId = 13 },
+                new NLocation() { Id = 11, Name = "Tajga", NKingdomId = 3, TemporaryImageId = 14 },
+
+                new NLocation() { Id = 14, Name = "Góry Orle", NKingdomId = 6, TemporaryImageId = 5 },
+                new NLocation() { Id = 15, Name = "Lodowiec", NKingdomId = 6, TemporaryImageId = 15 },
+                new NLocation() { Id = 22, Name = "Wyżyna", NKingdomId = 6, TemporaryImageId = 29 },
+
+                new NLocation() { Id = 17, Name = "Hardron", NKingdomId = 7, TemporaryImageId = 18 },
+                new NLocation() { Id = 16, Name = "Tundra", NKingdomId = 7, TemporaryImageId = 17 },
+
+                new NLocation() { Id = 18, Name = "Step LiuKi", NKingdomId = 8, TemporaryImageId = 19 },
+                new NLocation() { Id = 19, Name = "KurKor", NKingdomId = 8, TemporaryImageId = 20 },
+                new NLocation() { Id = 20, Name = "Dzielnica 1000 Rzemiosł", NKingdomId = 8, TemporaryImageId = 21 },
+                new NLocation() { Id = 21, Name = "Archipelag Imoto", NKingdomId = 8, TemporaryImageId = 22 },
             };
 
-
+            locations.Where(i => i.TemporaryImageId != null).ToList().ForEach(i => LoadLocationImage(i));
 
             var enemies = new List<Enemy>()
             {

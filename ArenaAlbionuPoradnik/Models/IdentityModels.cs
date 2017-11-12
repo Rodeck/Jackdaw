@@ -21,7 +21,7 @@ namespace ArenaAlbionuPoradnik.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("AAData", throwIfV1Schema: false)
         {
         }
 
