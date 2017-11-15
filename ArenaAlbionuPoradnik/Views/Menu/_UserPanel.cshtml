@@ -1,0 +1,15 @@
+﻿<h1>Witaj użytkowniku!</h1>
+<button id="logOffButton">Wyloguj</button>
+@Html.ActionLink("Wyloguj", "LogOff", "Account")
+
+<script>
+    $("#logOffButton").on("click", function (e)
+    {
+        e.preventDefault();
+         $.ajax({
+             url: "/Account/LogOff",
+             type: "post"
+         })
+    });
+
+</script>

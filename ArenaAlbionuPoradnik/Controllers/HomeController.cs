@@ -1,4 +1,5 @@
-﻿using ArenaAlbionuPoradnik.Models;
+﻿using ArenaAlbionuPoradnik.Helpers;
+using ArenaAlbionuPoradnik.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -11,6 +12,7 @@ namespace ArenaAlbionuPoradnik.Controllers
 {
     public class HomeController : Controller
     {
+        private AADataContext db = new AADataContext();
 
         public ActionResult Index()
         {
@@ -43,6 +45,13 @@ namespace ArenaAlbionuPoradnik.Controllers
             return View();
         }
 
-       
+        public ActionResult LogIn()
+        {
+            db.Menu.Where(s => s.Active).FirstOrDefault().State = Models.SiteState.LogedIn;
+            db.SaveChanges();
+            return View("Index");
+        }
+
+
     }
 }

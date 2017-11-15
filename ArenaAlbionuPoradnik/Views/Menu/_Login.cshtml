@@ -1,0 +1,20 @@
+﻿@using (Html.BeginForm("LoginMine", "Account"))
+{
+    <div class="group">
+        <input type="text" name="email"><span class="highlight"></span><span class="bar"></span>
+        <label>Email</label>
+    </div>
+    <div class="group">
+        <input type="password" name="password"><span class="highlight"></span><span class="bar"></span>
+        <label>Hasło</label>
+    </div>
+    <button type="submit" class="button buttonBlue">
+        Zaloguj
+        <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+    </button>
+}
+<ul class="nav nav-pills nav-stacked span2 navbar-inverse">
+    <li>@Html.ActionLink("Zarejestruj", "Register", "Account")</li>
+    <li>@Html.ActionLink("Przypomnij hasło", "Index", "Kingdom")</li>
+</ul>
+

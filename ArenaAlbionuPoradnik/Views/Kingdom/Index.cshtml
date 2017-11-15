@@ -23,7 +23,7 @@
         <div class="list-group">
             @foreach (ArenaAlbionuPoradnik.Models.NLocation location in Model.NLocation)
             {
-            <div class="list-group-item location-panel hvr-hollow" data-toggle="collapse" data-target="#loc_@location.Id">
+            <div class="list-group-item location-panel hvr-hollow location-button" data-toggle="collapse" data-target="#loc_@location.Id" id="@location.Id">
                 <p>
                     @location.Name
                 </p>               
@@ -47,7 +47,7 @@
                             }
                         </map>
                     </div>
-                    <div id="location_data" class="col-sm-7 location-data">
+                    <div id="location_data" class="col-sm-7 location-data location-data-@location.Id">
 
                     </div>
                 </div>               
@@ -57,9 +57,17 @@
 </div>
 </div>
 <script>
+
+    var expandedArea;
+
+    $(".location-button").on("click", function () {
+        expandedArea = $(this);
+    });
+
     $(".map-area").on("click", function(e)
     {
         e.preventDefault();
+        
          $.ajax({
              url: "/Kingdom/LocationData",
              type: "post",
@@ -68,7 +76,7 @@
              }
          })
         .done(function (result) {
-            $("#location_data").html(result);
+            $(".location-data-" + expandedArea.attr("id")).html(result);;
         });
     });
 

@@ -43,7 +43,7 @@ body {
 
 .location-data
 {
-    padding: 0px 30px 10px 20px;
+    padding: 10px 20px 10px 40px;
 }
 
 /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
@@ -86,6 +86,11 @@ body {
     margin-right: 0px;
     margin-top: 40px;
 
+}
+
+.item-table
+{
+    text-align: center;  
 }
 
 .location-description

@@ -22,15 +22,15 @@ namespace ArenaAlbionuPoradnik.Controllers
         }
 
         // GET: Weapons
-        public ActionResult WeaponType(string type)
+        public ActionResult WeaponType(string Id)
         {
-            EquipableType weaponType = (EquipableType)System.Enum.Parse(typeof(EquipableType), type);
+            EquipableType weaponType = (EquipableType)System.Enum.Parse(typeof(EquipableType), Id);
             return View(db.Items.OfType<Weapon>().Where(s => s.WeaponType == weaponType).ToList());
         }
 
-        public ActionResult ArmorType(string type)
+        public ActionResult ArmorType(string Id)
         {
-            EquipableType weaponType = (EquipableType)System.Enum.Parse(typeof(EquipableType), type);
+            EquipableType weaponType = (EquipableType)System.Enum.Parse(typeof(EquipableType), Id);
             return View(db.Items.OfType<Armor>().Where(s => s.WeaponType == weaponType).ToList());
         }
 

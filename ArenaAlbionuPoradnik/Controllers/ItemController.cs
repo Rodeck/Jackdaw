@@ -19,9 +19,9 @@ namespace ArenaAlbionuPoradnik.Controllers
         }
 
         // GET: Weapons
-        public ActionResult ItemType(string type)
+        public ActionResult ItemType(string Id)
         {
-            ItemType itemType = (ItemType)System.Enum.Parse(typeof(ItemType), type);
+            ItemType itemType = (ItemType)System.Enum.Parse(typeof(ItemType), Id);
             return View(db.Items.OfType<Item>().Where(s => s.Type == itemType).ToList());
         }
 

@@ -137,7 +137,7 @@ namespace ArenaAlbionuPoradnik.Helpers
             var locations = new List<NLocation>()
             {
                 new NLocation() { Id = 1, Name = "Dolne Miasto", NKingdomId = 1, Map = Helper.GetMap() },
-                new NLocation() { Id = 2, Name = "Górne Miasto", NKingdomId = 1, Map = Helper.GetMap() },
+                new NLocation() { Id = 2, Name = "Górne Miasto", NKingdomId = 1, TemporaryImageId = 35 },
                 new NLocation() { Id = 13, Name = "Wioska", NKingdomId = 1, TemporaryImageId = 4 },
 
                 new NLocation() { Id = 3, Name = "Las", NKingdomId = 5, TemporaryImageId =  0},
@@ -191,7 +191,7 @@ namespace ArenaAlbionuPoradnik.Helpers
             {
                 new Place() { Id = 1, NLocationId = 1 , PlaceName = "Arena", Description = "Miejsce pojedynków pomiędzy rycerzami wszystkich aren Areny Albionu, z wyjątkiem tej na Wyspie Dziewic." , TopX = 51, TopY = 11, BottomX = 188, BottomY = 131 },
                 new Place() { Id = 2, NLocationId = 1 , PlaceName = "Świątnia", Description = "Description" , TopX = 205, TopY = 12, BottomX = 308, BottomY = 140 },
-                new Place() { Id = 3, NLocationId = 1 , PlaceName = "Kowal", Description = "Możesz zatrudnić się jako czeladnik kowala, jeżeli masz 2 poziom parobka, młotek oraz dostarczysz 20 żelaza. Jeżeli masz 2 poziom w zawodzie kowal oraz młotek, możesz zamówić:" , TopX = 344, TopY = 28, BottomX = 458, BottomY = 118 },
+                new Place() { Id = 3, NLocationId = 1 , PlaceName = "Kowal", Description = "Możesz zatrudnić się jako czeladnik kowala, jeżeli masz 2 poziom parobka, młotek oraz dostarczysz 20 żelaza. Jeżeli masz 2 poziom w zawodzie kowal oraz młotek, możesz zamówić:" , TopX = 344, TopY = 28, BottomX = 458, BottomY = 118 , IsProductionPlace = true},
                 new Place() { Id = 4, NLocationId = 1 , PlaceName = "Lichwiarz", Description = "Description" , TopX = 19, TopY = 140, BottomX = 124, BottomY = 224 },
                 new Place() { Id = 5, NLocationId = 1 , PlaceName = "Sklep", Description = "Description" , TopX = 257, TopY = 171, BottomX = 324, BottomY = 240 },
                 new Place() { Id = 6, NLocationId = 1 , PlaceName = "Koszary", Description = "Description" , TopX = 344, TopY = 125, BottomX = 476, BottomY = 218 },
@@ -200,8 +200,25 @@ namespace ArenaAlbionuPoradnik.Helpers
                 new Place() { Id = 9, NLocationId = 1 , PlaceName = "Stadnina", Description = "Description" , TopX = 331, TopY = 226, BottomX = 465, BottomY = 314 },
                 new Place() { Id = 10, NLocationId = 1 , PlaceName = "Bazar", Description = "Lokalne targowisko. Procent prowizji ustalany jest przez króla." , TopX = 209, TopY = 295, BottomX = 327, BottomY = 384 },
                 new Place() { Id = 11, NLocationId = 1 , PlaceName = "Gospoda", Description = "Możesz tu zagrać w kości. Obstawiasz liczbę i czekasz na zakończenie tury. Zebrana kwota dzielona jest pomiędzy zwycięzców. Możesz też wynająć jeden z dostępnych pokoi, aby regenerować się szybciej. W gospodzie możesz porozmawiać na lokalnym \"czacie\" z rycerzami ze wszystkich podobnych miejsc w grze." , TopX = 39, TopY = 322, BottomX = 168, BottomY = 399 },
-                new Place() { Id = 12, NLocationId = 1 , PlaceName = "Las", Description = "Description" , TopX = 355, TopY = 327, BottomX = 479, BottomY = 399 }
+                new Place() { Id = 12, NLocationId = 1 , PlaceName = "Las", Description = "Description" , TopX = 355, TopY = 327, BottomX = 479, BottomY = 399 },
+
+                new Place() { Id = 13, NLocationId = 2 , PlaceName = "Złotnik", Description = "Możesz zrobić sam jeśli masz minimum 2 poziom rzemieslnika i sprawny młotek. Ty aktualnie masz x poziom rzemieslnika, x młotek" , TopX = 25, TopY = 304, BottomX = 156, BottomY = 379 },
+                new Place() { Id = 14, NLocationId = 2 , PlaceName = "Płatnerz", Description = "" , TopX = 307, TopY = 294, BottomX = 425, BottomY = 386 },
+                new Place() { Id = 15, NLocationId = 2 , PlaceName = "Dom kurtyzan", Description = "" , TopX = 25, TopY = 212, BottomX = 201, BottomY = 300 },
+                new Place() { Id = 16, NLocationId = 2 , PlaceName = "Straż miejska", Description = "" , TopX=   260 ,   TopY =  214 ,   BottomX =   427 ,   BottomY =   290},
+                new Place() { Id = 17, NLocationId = 2 , PlaceName = "Baszta skazańcow", Description = "" , TopX=    249 ,   TopY =  73  ,   BottomX =   359 ,   BottomY =   208 },
+                new Place() { Id = 18, NLocationId = 2 , PlaceName = "Pałac władcy,", Description = "" , TopX=   9   ,   TopY =  103 ,   BottomX =   198 ,   BottomY =   207 },
+                new Place() { Id = 19, NLocationId = 2 , PlaceName = "Wioska", Description = "" , TopX=  144 ,   TopY =  93  ,   BottomX =   234 ,   BottomY =   94 }
             };
+
+            var sections = new List<TextSection>()
+            {
+                new TextSection() {Id = 1, Text = "Możesz tutaj sprzedać drogocenne kamienie, klejnoty i przedmioty</br>Mając lunetę i młotek po skruszeniu kamienia możesz wyczytać z gwiazd czy dany kamień ma ukrytą moc diamentu, kamienia filozoficznego lub inną</br>Ty masz aktualnie x kamieni, x młotek, x luneta</br>/br>Tutejsi handlarze z chęcią zakupią wszelkie ilości sztabek złota i guldenów. Aktualna cena za 1 szt. sztabki to x talary i za monetę 20 guldenów to y talary</br>Ty masz aktualnie 0 sztabek złota i 0 guldenów" },
+                new TextSection() {Id = 2, Text = "Aktualnie możesz spotkać się z następującymi Paniami.</br>Spotkanie zwiększy Twoją sprawność (ciekawe czego ?)." }
+            };
+
+            places.Where(s => s.Id == 13).FirstOrDefault().Sections = sections.Where(s => s.Id == 1).ToList();
+            places.Where(s => s.Id == 15).FirstOrDefault().Sections = sections.Where(s => s.Id == 2).ToList();
 
             places.Where(s => s.Id == 3).FirstOrDefault().Production = GetItemsById(items, new List<int>() { 7, 8, 9, 10, 11, 12, 13 });
 
@@ -242,6 +259,58 @@ namespace ArenaAlbionuPoradnik.Helpers
 
             stories.ForEach(s => context.Stories.Add(s));
             context.SaveChanges();
+
+            var menu = new List<MenuModel>()
+            {
+                new MenuModel() { Id = 1, Active = true}
+            };
+
+            var menuItems = new List<MenuItem>()
+            {
+                new MenuItem() { Id = 1, Text = "Królestwa" },
+                new MenuItem() { Id = 2, Text = "Uzbrojenie" },
+                new MenuItem() { Id = 3, Text = "Przedmioty" },
+                new MenuItem() { Id = 4, Text = "Klaudia" }
+            };
+
+            var kingdomMenuList = new List<MenuSubItem>();
+
+            foreach(var kingdom in kingdoms)
+            {
+                MenuSubItem item = new MenuSubItem();
+                item.ActionName = "Index";
+                item.ControllerName = "Kingdom";
+                item.Id = kingdom.Id;
+                item.Value = kingdom.Id;
+                item.Text = kingdom.Name;
+                kingdomMenuList.Add(item);
+            }
+
+            menuItems.Where(s => s.Id == 1).FirstOrDefault().SubItems = kingdomMenuList;
+
+            //Equipment
+
+            var eqList = new List<MenuSubItem>()
+            {
+                new MenuSubItem() { Id = 1, Text = "Broń jednoręczna", ControllerName = "Weapons", ActionName = "WeaponType", ValueS = "OneHanded"},
+                new MenuSubItem() { Id = 2, Text = "Broń dwuręczna", ControllerName = "Weapons", ActionName = "WeaponType", ValueS = "DoubleHanded"},
+                new MenuSubItem() { Id = 3, Text = "Broń dystansowa", ControllerName = "Weapons", ActionName = "WeaponType", ValueS = "Bow"},
+
+                new MenuSubItem() { Id = 4, Text = "Hełmy", ControllerName = "Weapons", ActionName = "ArmorType", ValueS = "Helmet"},
+                new MenuSubItem() { Id = 5, Text = "Tarcze", ControllerName = "Weapons", ActionName = "ArmorType", ValueS = "Shields"},
+                new MenuSubItem() { Id = 6, Text = "Napierśniki", ControllerName = "Weapons", ActionName = "ArmorType", ValueS = "Chest"},
+                new MenuSubItem() { Id = 7, Text = "Naramienniki", ControllerName = "Weapons", ActionName = "ArmorType", ValueS = "Shoulders"},
+                new MenuSubItem() { Id = 8, Text = "Nagolenniki", ControllerName = "Weapons", ActionName = "ArmorType", ValueS = "Greaves"}
+            };
+
+            menuItems.Where(s => s.Id == 2).FirstOrDefault().SubItems = eqList;
+
+            menu.Where(s => s.Id == 1).FirstOrDefault().MenuItems = menuItems;
+            menu.Where(s => s.Id == 1).FirstOrDefault().State = SiteState.LogedOut;
+            menu.ForEach(s => context.Menu.Add(s));
+            context.SaveChanges();
+
+
 
         }
     }

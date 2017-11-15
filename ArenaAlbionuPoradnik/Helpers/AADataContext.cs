@@ -20,5 +20,6 @@ namespace ArenaAlbionuPoradnik.Helpers
         public DbSet<Story> Stories { get; set; }
         public DbSet<ProcessedMaterial> ProcessedMaterials { get; set; }
         public DbSet<RawMaterial> RawMaterials { get; set; }
+        public DbSet<MenuModel> Menu { get; set; }
     }
 }

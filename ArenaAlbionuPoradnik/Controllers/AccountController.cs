@@ -91,6 +91,15 @@ namespace ArenaAlbionuPoradnik.Controllers
             }
         }
 
+        public ActionResult LoginMine(string email, string password)
+        {
+            // This doesn't count login failures towards account lockout
+            // To enable password failures to trigger account lockout, change to shouldLockout: true
+            var result = SignInManager.PasswordSignInAsync(email, password, false, shouldLockout: false);
+
+            return View("Index", "Home");
+        }
+
         //
         // GET: /Account/VerifyCode
         [AllowAnonymous]
@@ -387,8 +396,6 @@ namespace ArenaAlbionuPoradnik.Controllers
 
         //
         // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);

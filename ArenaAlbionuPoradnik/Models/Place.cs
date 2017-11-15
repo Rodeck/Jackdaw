@@ -21,5 +21,9 @@ namespace ArenaAlbionuPoradnik.Models
         public string Description { get; set; }
 
         public virtual ICollection<Item> Production { get; set; }
+        public virtual ICollection<TextSection> Sections { get; set; }
+
+        public bool IsProductionPlace { get; set; }
+        public string ProductionText { get; set; }
     }
 }
