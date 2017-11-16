@@ -5,22 +5,31 @@
 </div>
 <div class="max-width">
     <ul class="list-group">
-        <li class="list-group-item no-border" data-toggle="collapse" data-target="#kingdoms">
-            <p>
-                <i class="material-icons">map</i>
-                Królestwa
-            </p>
-            <ul id="kingdoms" class="collapse list-group">
-                <li class="list-group-item list-item no-border">@Html.ActionLink("Albion", "Index", "Kingdom", new { Id = 1 }, null)</li>
-                <li class="list-group-item list-item no-border">@Html.ActionLink("Zigura", "Index", "Kingdom", new { Id = 2 }, null)</li>
-                <li class="list-group-item list-item no-border">@Html.ActionLink("Orgrod", "Index", "Kingdom", new { Id = 3 }, null)</li>
-                <li class="list-group-item list-item no-border">@Html.ActionLink("Dorstar", "Index", "Kingdom", new { Id = 4 }, null)</li>
-                <li class="list-group-item list-item no-border">@Html.ActionLink("Amazonki", "Index", "Kingdom", new { Id = 5 }, null)</li>
-                <li class="list-group-item list-item no-border">@Html.ActionLink("Tereny Neutralne", "Index", "Kingdom", new { Id = 6 }, null)</li>
-                <li class="list-group-item list-item no-border">@Html.ActionLink("Hardron", "Index", "Kingdom", new { Id = 7 }, null)</li>
-                <li class="list-group-item list-item no-border">@Html.ActionLink("KurKor", "Index", "Kingdom", new { Id = 8 }, null)</li>
-            </ul>
-        </li>
+
+        @foreach (var item in Model.MenuItems)
+        {
+            <li class="list-group-item no-border" data-toggle="collapse" data-target="#@item.Text@item.Id">
+                <p>
+                    <i class="material-icons">map</i>
+                    @item.Text
+                </p>
+                <ul id="@item.Text@item.Id" class="collapse">
+                    @foreach (var subItem in item.SubItems)
+                    {
+                        object param;
+                        if (subItem.Value == null)
+                        {
+                            param = subItem.ValueS;
+                        }
+                        else
+                        {
+                            param = subItem.Value.Value;
+                        }
+                        <li class="list-group-item list-item no-border">@Html.ActionLink(subItem.Text, subItem.ActionName, subItem.ControllerName, new { Id = @param }, null)</li>
+                    }
+                </ul>
+            </li>
+        }        
         <li class="list-group-item no-border" data-toggle="collapse" data-target="#enemies">
             <p>
                 <i class="material-icons">map</i>
@@ -31,28 +40,7 @@
                 <li class="list-group-item list-item no-border">@Html.ActionLink("Bandyci", "EnemyOfType", "Enemies", new { Id = "Criminal" }, null)</li>
                 <li class="list-group-item list-item no-border">@Html.ActionLink("Monstra", "EnemyOfType", "Enemies", new { Id = "Monstrum" }, null)</li>
             </ul>
-        </li>
-        <li class="list-group-item no-border" data-toggle="collapse" data-target="#equipment">
-            <p>
-                <i class="material-icons">map</i>
-                Uzbrojenie
-            </p>
-            <ul id="equipment" class="collapse list-group">
-                <li class="list-group-item list-item no-border">@Html.ActionLink("Broń jednoręczna", "WeaponType", "Weapons", new { Id = "OneHanded" }, null)</li>
-                <li class="list-group-item list-item no-border">@Html.ActionLink("Broń dwuręczna", "WeaponType", "Weapons", new { Id = "DoubleHanded" }, null)</li>
-                <li class="list-group-item list-item no-border">@Html.ActionLink("Napierśniki", "ArmorType", "Weapons", new { Id = "Chest" }, null)</li>
-            </ul>
-        </li>
-        <li class="list-group-item no-border" data-toggle="collapse" data-target="#items">
-            <p>
-                <i class="material-icons">map</i>
-                Przedmioty
-            </p>
-            <ul id="items" class="collapse list-group">
-                <li class="list-group-item list-item no-border">@Html.ActionLink("Surowce podstawowe", "ItemType", "Item", new { Id = "RawMaterial" }, null)</li>
-                <li class="list-group-item list-item no-border">@Html.ActionLink("Surowce wytworzone", "ItemType", "Item", new { Id = "ProcessedMaterial" }, null)</li>
-            </ul>
-        </li>
+        </li>             
         <li class="list-group-item no-border" data-toggle="collapse" data-target="#tutorials">
             <p>
                 <i class="material-icons">map</i>
@@ -70,33 +58,7 @@
                 @Html.ActionLink("Opowiadania", "Index", "Stories")
             </p>
         </li>
-        @foreach (var item in Model.MenuItems)
-        {
-            <li class="list-group-item no-border" data-toggle="collapse" data-target="#@item.Text@item.Id">
-                <p>
-                    <i class="material-icons">map</i>
-                    @item.Text
-                </p>
-                <ul id="@item.Text@item.Id" class="collapse">
-                    @foreach (var subItem in item.SubItems)
-                    {
-                            object param;
-                            if (subItem.Value == null)
-                            {
-                                param = subItem.ValueS;
-                            }
-                            else
-                            {
-                                param = subItem.Value.Value;
-                            }
-                        <li>@Html.ActionLink(subItem.Text, subItem.ActionName, subItem.ControllerName, new { Id = @param }, null)</li>
-                    }
-                </ul>
-            </li>
-        }
-        <li class="list-group-item no-border">
-            @Html.ActionLink("Switch state", "LogIn", "Home")
-        </li>
+        
     </ul>
 </div>
 <div class="form-div">

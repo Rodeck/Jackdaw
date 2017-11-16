@@ -109,9 +109,11 @@ namespace ArenaAlbionuPoradnik.Helpers
                 new Item() { Id = 104, Image = Helper.GetItem(), Name = "Len", Type = ItemType.ProcessedMaterial },
                 new Item() { Id = 105, Image = Helper.GetItem(), Name = "Sznurek", Type = ItemType.ProcessedMaterial },
                 new Item() { Id = 105, Image = Helper.GetItem(), Name = "Dębowy drąg", Type = ItemType.RawMaterial, TemporaryImageId = 46 },
-                new Item() { Id = 110, Image = Helper.GetItem(), Name = "Węgiel", Type = ItemType.RawMaterial },
+                new Item() { Id = 110, Image = Helper.GetItem(), Name = "Węgiel", Type = ItemType.RawMaterial , TemporaryImageId = 123},
                 new Item() { Id = 111, Image = Helper.GetItem(), Name = "Kamień", Type = ItemType.RawMaterial, TemporaryImageId = 49 },
-                new Item() { Id = 112, Image = Helper.GetItem(), Name = "Rogi", Type = ItemType.RawMaterial, TemporaryImageId = 44 }
+                new Item() { Id = 112, Image = Helper.GetItem(), Name = "Rogi", Type = ItemType.RawMaterial, TemporaryImageId = 44 },
+                new Item() { Id = 113, Image = Helper.GetItem(), Name = "Bambusowy patyk", Type = ItemType.RawMaterial, TemporaryImageId = 44 },
+                new Item() { Id = 114, Image = Helper.GetItem(), Name = "Siarka", Type = ItemType.RawMaterial, TemporaryImageId = 26 }
             };
 
             items.Where(s => s.Id == 100).FirstOrDefault().Production = GetItemsById(items, new List<int>() { 7, 8, 90 });
@@ -270,7 +272,6 @@ namespace ArenaAlbionuPoradnik.Helpers
                 new MenuItem() { Id = 1, Text = "Królestwa" },
                 new MenuItem() { Id = 2, Text = "Uzbrojenie" },
                 new MenuItem() { Id = 3, Text = "Przedmioty" },
-                new MenuItem() { Id = 4, Text = "Klaudia" }
             };
 
             var kingdomMenuList = new List<MenuSubItem>();
@@ -304,6 +305,14 @@ namespace ArenaAlbionuPoradnik.Helpers
             };
 
             menuItems.Where(s => s.Id == 2).FirstOrDefault().SubItems = eqList;
+
+            var itemsList = new List<MenuSubItem>()
+            {
+                new MenuSubItem() { Id = 9, Text = "Surowce podstawowe", ControllerName = "Item", ActionName = "ItemType", ValueS = "RawMaterial"},
+                new MenuSubItem() { Id = 10, Text = "Surowce wytworzone", ControllerName = "Item", ActionName = "ItemType", ValueS = "ProcessedMaterial"},
+            };
+
+            menuItems.Where(s => s.Id == 3).FirstOrDefault().SubItems = itemsList;
 
             menu.Where(s => s.Id == 1).FirstOrDefault().MenuItems = menuItems;
             menu.Where(s => s.Id == 1).FirstOrDefault().State = SiteState.LogedOut;
